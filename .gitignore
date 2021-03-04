@@ -1,0 +1,11 @@
+Makefile
+Makefile.bak
+man/Makefile
+man/Makefile.bak
+man/mlvwm._man
+mlvwm/Makefile
+mlvwm/Makefile.bak
+mlvwm/*.o
+mlvwm/mlvwm
+sample_rc/Makefile
+sample_rc/Makefile.bak
