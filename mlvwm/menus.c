@@ -1294,28 +1294,24 @@ Window PixmapWin (char **data_xpm, Window root, int x, int y)
 void CreateMenuBar( void )
 {
 	static char *lbot_xpm[] = {
-		"7 7 2 1",
+        "5 5 2 1",
 		"  c none s none",
-		"# c black",
-		"#      ",
-		"#      ",
-		"#      ",
-		"##     ",
-		"###    ",
-		"####   ",
-		"#######"
+        "# c black",
+        "#    ",
+        "#    ",
+        "##   ",
+        "###  ",
+        "#####"
 	};
 	static char *rbot_xpm[] = {
-		"7 7 2 1",
+        "5 5 2 1",
 		"  c none s none",
-		"# c black",
-		"      #",
-		"      #",
-		"      #",
-		"     ##",
-		"    ###",
-		"   ####",
-		"#######"
+        "# c black",
+        "    #",
+        "    #",
+        "   ##",
+        "  ###",
+        "#####"
 	};
 	unsigned long valuemask;
 	XSetWindowAttributes attributes;
