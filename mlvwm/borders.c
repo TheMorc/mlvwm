@@ -55,13 +55,13 @@ void DrawShadowBox( int x, int y, int w, int h, Window win, int d, GC hilight, G
 	h--;
 	for( lp=0; lp<d; lp++ ){
 		if( mode&SHADOW_BOTTOM )
-			XDrawLine( dpy, win, shadow, x+lp, y+h-lp, x+w-lp, y+h-lp );
+            XDrawLine( dpy, win, shadow, x+lp+1, y+h-lp, x+w-lp, y+h-lp );
 		if( mode&SHADOW_LEFT )
-			XDrawLine( dpy, win, hilight, x+lp, y+lp, x+lp, y+h-lp );
+            XDrawLine( dpy, win, hilight, x+lp, y+lp, x+lp, y+h-lp-1 );
 		if( mode&SHADOW_TOP )
-			XDrawLine( dpy, win, hilight, x+lp, y+lp, x+w-lp, y+lp );
+            XDrawLine( dpy, win, hilight, x+lp, y+lp, x+w-lp-1, y+lp );
 		if( mode&SHADOW_RIGHT )
-			XDrawLine( dpy, win, shadow, x+w-lp, y+lp, x+w-lp, y+h-lp );
+            XDrawLine( dpy, win, shadow, x+w-lp, y+lp+1, x+w-lp, y+h-lp-1 );
 	}
 }
 
@@ -119,8 +119,7 @@ void SetUpFrame( MlvwmWindow *t, int x, int y, int w, int h, Bool sendEvent )
 	title_height = t->flags & TITLE ? TITLE_HEIGHT : 0;
 	sbar_v = t->flags & SBARV ? SBAR_WH : 0;
 	sbar_h = t->flags & SBARH ? SBAR_WH : 0;
-	resize_r = t->flags & RESIZER ?
-		SBAR_WH : ( sbar_v!=0 && sbar_h!=0 ? SBAR_WH : 0 );
+    resize_r = t->flags & RESIZER ? SBAR_WH : ( sbar_v!=0 && sbar_h!=0 ? SBAR_WH : 0 );
 
 	if( t->flags&TITLE )
 		XResizeWindow( dpy, t->title_w,
@@ -128,17 +127,12 @@ void SetUpFrame( MlvwmWindow *t, int x, int y, int w, int h, Bool sendEvent )
 					  TITLE_HEIGHT );
 	if( t->flags&MINMAXR ){
 		if( Scr.flags&SYSTEM8 )
-			XMoveWindow(dpy, t->minmax_b,
-						w-BOXSIZE-9-(t->flags&SHADER?BOXSIZE+4:0),
-						(TITLE_HEIGHT-BOXSIZE)/2);
+            XMoveWindow(dpy, t->minmax_b, w-BOXSIZE-7-(t->flags&SHADER?BOXSIZE+4:0), (TITLE_HEIGHT-BOXSIZE)/2);
 		else
-			XMoveWindow(dpy, t->minmax_b,
-						w-BOXSIZE*2-1,
-						(TITLE_HEIGHT-BOXSIZE)/2);
+            XMoveWindow(dpy, t->minmax_b, w-BOXSIZE*2-1, (TITLE_HEIGHT-BOXSIZE)/2);
 	}
 	if( t->flags&SHADER )
-		XMoveWindow(dpy, t->shade_b, w-BOXSIZE-9,
-					(TITLE_HEIGHT-BOXSIZE)/2);
+        XMoveWindow(dpy, t->shade_b, w-BOXSIZE-8, (TITLE_HEIGHT-BOXSIZE)/2);
 	if( !(t->flags&SHADE) ){
 		if( t->flags & ( TITLE | SBARV | SBARH | RESIZER ) ){
 			t->attr.width = w-sbar_v-(t->flags&SBARV ? 2 : 1 )-1;
@@ -292,7 +286,7 @@ void SetUpFrame( MlvwmWindow *t, int x, int y, int w, int h, Bool sendEvent )
 
 void FillGradation( Window win )
 {
-	XClearWindow( dpy, win );
+    XClearWindow( dpy, win );
 	XDrawRectangle( dpy, win, Scr.BlackGC,
 				   1, 1, BOXSIZE-3, BOXSIZE-3 );
 	DrawShadowBox( 0, 0, BOXSIZE, BOXSIZE, win, 1,
@@ -332,9 +326,7 @@ void DrawCloseBox( MlvwmWindow *t, Bool on )
 	XClearWindow( dpy, t->close_b );
 	if( on ){
 		if( Scr.flags&SYSTEM8 ){
-			XFillRectangle( dpy, t->title_w, Scr.Gray4GC,
-						   4, (TITLE_HEIGHT-BOXSIZE)/2-2,
-						   BOXSIZE+7, BOXSIZE+2 );
+            XFillRectangle( dpy, t->title_w, Scr.Gray4GC, 4, (TITLE_HEIGHT-BOXSIZE)/2-2, BOXSIZE+2, BOXSIZE+2 );
 			FillGradation( t->close_b );
 		}
 		else{
@@ -375,25 +367,15 @@ void DrawMinMax( MlvwmWindow *t, Bool on )
 	XClearWindow( dpy, t->minmax_b );
 	if( on ){
 		if( Scr.flags&SYSTEM8 ){
-			XFillRectangle( dpy, t->title_w, Scr.Gray4GC,
-						   t->frame_w-BOXSIZE-15-
-						   (t->flags&SHADER?BOXSIZE+6:0),
-						   (TITLE_HEIGHT-BOXSIZE)/2-1,
-						   BOXSIZE+8, BOXSIZE+2 );
+            XFillRectangle( dpy, t->title_w, Scr.Gray4GC, t->frame_w-BOXSIZE-9-(t->flags&SHADER?BOXSIZE+6:0), (TITLE_HEIGHT-BOXSIZE)/2-1, BOXSIZE+8, BOXSIZE+2 );
 			FillGradation( t->minmax_b );
-			XDrawRectangle( dpy, t->minmax_b, Scr.BlackGC,
-						   1, 1, BOXSIZE-6, BOXSIZE-6 );
+            XDrawRectangle( dpy, t->minmax_b, Scr.BlackGC, 1, 1, BOXSIZE-7, BOXSIZE-7 );
 		}
 		else{
-			XFillRectangle( dpy, t->title_w, Scr.Gray4GC,
-						   t->frame_w-BOXSIZE*2-3,(TITLE_HEIGHT-BOXSIZE)/2-1,
-						   BOXSIZE+4, BOXSIZE+1 );
-			DrawShadowBox( 0, 0, BOXSIZE, BOXSIZE, t->minmax_b, 1,
-						  Scr.BlackGC, Scr.WhiteGC, SHADOW_ALL );
-			DrawShadowBox( 1, 1, BOXSIZE-2, BOXSIZE-2, t->minmax_b, 1,
-						  Scr.WhiteGC, Scr.BlackGC, SHADOW_ALL );
-			DrawShadowBox( 1, 1, BOXSIZE-6, BOXSIZE-6, t->minmax_b, 1,
-						  Scr.WhiteGC, Scr.BlackGC, SHADOW_ALL );
+            XFillRectangle( dpy, t->title_w, Scr.Gray4GC, t->frame_w-BOXSIZE*2-3,(TITLE_HEIGHT-BOXSIZE)/2-1, BOXSIZE+4, BOXSIZE+1 );
+            DrawShadowBox( 0, 0, BOXSIZE, BOXSIZE, t->minmax_b, 1,  Scr.BlackGC, Scr.WhiteGC, SHADOW_ALL );
+            DrawShadowBox( 1, 1, BOXSIZE-2, BOXSIZE-2, t->minmax_b, 1, Scr.WhiteGC, Scr.BlackGC, SHADOW_ALL );
+            DrawShadowBox( 1, 1, BOXSIZE-6, BOXSIZE-6, t->minmax_b, 1, Scr.WhiteGC, Scr.BlackGC, SHADOW_ALL );
 		}
 	}
 }
@@ -428,13 +410,10 @@ void DrawShadeR( MlvwmWindow *t, Bool on )
 	XChangeWindowAttributes( dpy, t->shade_b, valuemask, &attributes_box );
 	XClearWindow( dpy, t->shade_b );
 	if( on ){
-		XFillRectangle( dpy, t->title_w, Scr.Gray4GC, t->frame_w-BOXSIZE-15,
-					   (TITLE_HEIGHT-BOXSIZE)/2-1, BOXSIZE+8, BOXSIZE+2 );
-		FillGradation( t->shade_b );
-		XDrawLine( dpy, t->shade_b, Scr.BlackGC,
-				  1, BOXSIZE/2-1, BOXSIZE-3, BOXSIZE/2-1 );
-		XDrawLine( dpy, t->shade_b, Scr.BlackGC,
-				  1, BOXSIZE/2+1, BOXSIZE-3, BOXSIZE/2+1 );
+        XFillRectangle( dpy, t->title_w, Scr.Gray4GC, t->frame_w-BOXSIZE-15, (TITLE_HEIGHT-BOXSIZE)/2-1, BOXSIZE+8, BOXSIZE+2 );
+        FillGradation( t->shade_b );
+        XDrawLine( dpy, t->shade_b, Scr.BlackGC, 1, BOXSIZE/2-1, BOXSIZE-3, BOXSIZE/2-1 );
+        XDrawLine( dpy, t->shade_b, Scr.BlackGC, 1, BOXSIZE/2+1, BOXSIZE-3, BOXSIZE/2+1 );
 	}
 }
 
@@ -487,55 +466,41 @@ void SetTitleBar( MlvwmWindow *t, Bool on_off )
 	}
 	while( w+20>drawable && titlelength>0 );
 
-	if( on_off ){
-		for( lp=4; lp<14; lp+=3 ){
+    if( on_off ){
+
+        //stripes
+        for( lp=4; lp<16; lp+=2 ){
 			if( Scr.d_depth>1 ){
-				if( Scr.flags&SYSTEM8 )
-					DrawShadowBox( 4, lp-2, t->frame_w-15, 2, t->title_w, 1,
-								  Scr.WhiteGC, Scr.Gray1GC, SHADOW_ALL );
-				else
-					DrawShadowBox( 4, lp-1, t->frame_w-11, 2, t->title_w, 1,
-								  Scr.Gray1GC, Scr.WhiteGC, SHADOW_ALL );
+                if( Scr.flags&SYSTEM8 )
+                    DrawShadowBox( 4, lp-1, t->frame_w-14, 2, t->title_w, 1, Scr.WhiteGC, Scr.Gray1GC, SHADOW_ALL );
+                else
+                    DrawShadowBox( 4, lp-1, t->frame_w-11, 2, t->title_w, 1, Scr.Gray1GC, Scr.WhiteGC, SHADOW_ALL );
 			}
 			else
-				XDrawLine( dpy, t->title_w, Scr.BlackGC,
-						  4, lp-1, t->frame_w-7, lp-1 );
+				XDrawLine( dpy, t->title_w, Scr.BlackGC, 4, lp-1, t->frame_w-7, lp-1 );
 		}
-		if( Scr.d_depth>1 ){
-			if( Scr.flags&SYSTEM8 )
-				DrawShadowBox( 4, 14, t->frame_w-15, 2, t->title_w, 1,
-							  Scr.WhiteGC, Scr.Gray1GC, SHADOW_ALL );
-			else
-				XDrawLine( dpy, t->title_w, Scr.Gray1GC,
-						  4, 15, t->frame_w-9, 15 );
+
+        //top shadow
+        if( Scr.flags&SYSTEM8 ){
+            DrawShadowBox( 0, 0, t->frame_w-2, TITLE_HEIGHT, t->title_w, 1, Scr.WhiteGC, Scr.Gray2GC, SHADOW_TOP );
+            if( !(t->flags&SHADE) )
+                XDrawLine( dpy, t->title_w, Scr.Gray2GC, 2, TITLE_HEIGHT-1, t->frame_w-9, TITLE_HEIGHT-1 );
 		}
 		else
-			XDrawLine( dpy, t->title_w, Scr.BlackGC,
-					  4, 15, t->frame_w-7, 15 );
-		if( Scr.flags&SYSTEM8 ){
-			DrawShadowBox( 0, 0, t->frame_w-2, TITLE_HEIGHT, t->title_w,
-						  1, Scr.WhiteGC, Scr.Gray2GC, SHADOW_TOP );
-			if( !(t->flags&SHADE) )
-				XDrawLine( dpy, t->title_w, Scr.Gray2GC,
-						  2, TITLE_HEIGHT-1, t->frame_w-9, TITLE_HEIGHT-1 );
-		}
-		else
-			DrawShadowBox( 0, 0, t->frame_w-2, TITLE_HEIGHT, t->title_w,
-						  1, Scr.WhiteGC, Scr.Gray2GC, SHADOW_ALL );
-		XFillRectangle( dpy, t->title_w, Scr.Gray4GC,
-					   (t->frame_w-w)/2-10, 1, w+20, TITLE_HEIGHT-2 );
+			DrawShadowBox( 0, 0, t->frame_w-2, TITLE_HEIGHT, t->title_w, 1, Scr.WhiteGC, Scr.Gray2GC, SHADOW_ALL );
+
+        XFillRectangle( dpy, t->title_w, Scr.Gray4GC, (t->frame_w-w)/2-5, 1, w+10, TITLE_HEIGHT-2 );
 		dispgc = Scr.BlackGC;
 	}
 	else{
 		if( Scr.d_depth>1 )			dispgc = Scr.Gray3GC;
 		else			dispgc = Scr.BlackGC;
-	}
-	if( t->flags&CLOSER )		DrawCloseBox( t, on_off );
-	if( t->flags&MINMAXR )		DrawMinMax( t, on_off );
-	if( t->flags&SHADER )		DrawShadeR( t, on_off );
+    }
+    if( t->flags&CLOSER )		DrawCloseBox( t, on_off );
+    if( t->flags&MINMAXR )		DrawMinMax( t, on_off );
+    if( t->flags&SHADER )		DrawShadeR( t, on_off );
 
-	XDRAWSTRING( dpy, t->title_w, WINDOWFONT, dispgc, (t->frame_w-w)/2,
-				TITLE_HEIGHT/2-offset, t->name, titlelength );
+    XDRAWSTRING( dpy, t->title_w, WINDOWFONT, dispgc, (t->frame_w-w)/2, TITLE_HEIGHT/2-offset, t->name, titlelength );
 	if( Scr.d_depth<2 && !on_off ){
 		xgcv.function = GXor;
 		mask = GCFunction;
@@ -957,8 +922,8 @@ void DrawAllDecorations( MlvwmWindow *t, Bool on_off )
 		DrawResizeBox( t, on_off );
 	if( t->flags&TITLE )
 		SetTitleBar( t, on_off );
-	if( Scr.flags&SYSTEM8 )
-		DrawFrameShadow( t, on_off );
+    if( Scr.flags&SYSTEM8 )
+        DrawFrameShadow( t, on_off );
 
 	XSync( dpy, 0 );
 }

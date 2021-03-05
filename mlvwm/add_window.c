@@ -191,47 +191,22 @@ void create_titlebar( MlvwmWindow *tmp_win )
 	attributes.event_mask = ButtonPressMask | ButtonReleaseMask | ExposureMask;
 	attributes.background_pixel = WhitePixel( dpy, Scr.screen );
 	attributes.cursor = Scr.MlvwmCursors[TITLE_CURSOR];
-	tmp_win->title_w = XCreateWindow( dpy, tmp_win->frame,
-									 Scr.flags&SYSTEM8?2:0, 0,
-									 tmp_win->attr.width+SBAR_WH+1,
-									 TITLE_HEIGHT, 0,
-									 CopyFromParent, InputOutput,
-									 CopyFromParent,
-									 valuemask, &attributes );
-	attributes.event_mask = ( ButtonPressMask|ButtonReleaseMask|ExposureMask
-							 | EnterWindowMask | LeaveWindowMask );
+    tmp_win->title_w = XCreateWindow( dpy, tmp_win->frame, Scr.flags&SYSTEM8?2:0, 0, tmp_win->attr.width+SBAR_WH+1, TITLE_HEIGHT, 0, CopyFromParent, InputOutput, CopyFromParent, valuemask, &attributes );
+    attributes.event_mask = ( ButtonPressMask|ButtonReleaseMask|ExposureMask|EnterWindowMask|LeaveWindowMask );
 
 	if( tmp_win->flags&CLOSER ){
 		attributes.cursor = Scr.MlvwmCursors[DESTROY];
-		tmp_win->close_b = XCreateWindow( dpy, tmp_win->title_w,
-										 Scr.flags&SYSTEM8?4:BOXSIZE+1,
-										 (TITLE_HEIGHT-BOXSIZE)/2,
-										 BOXSIZE, BOXSIZE, 0,
-										 CopyFromParent, InputOutput,
-										 CopyFromParent,
-										 valuemask, &attributes );
+        tmp_win->close_b = XCreateWindow( dpy, tmp_win->title_w, 2, (TITLE_HEIGHT-BOXSIZE)/2, BOXSIZE, BOXSIZE, 0, CopyFromParent, InputOutput, CopyFromParent, valuemask, &attributes );
 		XSaveContext( dpy, tmp_win->close_b, MlvwmContext, (caddr_t)tmp_win );
 	}
 	if( tmp_win->flags&MINMAXR ){
-		attributes.cursor = Scr.MlvwmCursors[SELECT];
-		tmp_win->minmax_b = XCreateWindow( dpy, tmp_win->title_w,
-										  tmp_win->frame_w-BOXSIZE*2-1,
-										  (TITLE_HEIGHT-BOXSIZE)/2,
-										  BOXSIZE, BOXSIZE, 0,
-										  CopyFromParent, InputOutput,
-										  CopyFromParent,
-										  valuemask, &attributes );
-		XSaveContext( dpy, tmp_win->minmax_b, MlvwmContext, (caddr_t)tmp_win );
+        attributes.cursor = Scr.MlvwmCursors[SELECT];
+        tmp_win->minmax_b = XCreateWindow( dpy, tmp_win->title_w, 2, (TITLE_HEIGHT-BOXSIZE)/2, BOXSIZE, BOXSIZE, 0, CopyFromParent, InputOutput, CopyFromParent, valuemask, &attributes );
+        XSaveContext( dpy, tmp_win->minmax_b, MlvwmContext, (caddr_t)tmp_win );
 	}
 	if( tmp_win->flags&SHADER ){
 		attributes.cursor = Scr.MlvwmCursors[SELECT];
-		tmp_win->shade_b = XCreateWindow( dpy, tmp_win->title_w,
-										 tmp_win->frame_w-BOXSIZE*2-1,
-										 (TITLE_HEIGHT-BOXSIZE)/2,
-										 BOXSIZE, BOXSIZE, 0,
-										 CopyFromParent, InputOutput,
-										 CopyFromParent,
-										 valuemask, &attributes );
+        tmp_win->shade_b = XCreateWindow( dpy, tmp_win->title_w, 2, (TITLE_HEIGHT-BOXSIZE)/2, BOXSIZE, BOXSIZE, 0, CopyFromParent, InputOutput, CopyFromParent, valuemask, &attributes );
 		XSaveContext( dpy, tmp_win->shade_b, MlvwmContext, (caddr_t)tmp_win );
 	}
  	XMapSubwindows( dpy, tmp_win->title_w );
@@ -536,8 +511,8 @@ MlvwmWindow *AddWindow( Window win )
 	if( tmp_win->Desk<0 || tmp_win->Desk>=Scr.n_desktop )
 		tmp_win->Desk = 0;
 	
-	if( tmp_win->flags&(TITLE|SBARV|SBARH|RESIZER) ){
-		tmp_win->frame_w = tmp_win->attr.width+SBAR_WH+1+2;
+    if( tmp_win->flags&(TITLE|SBARV|SBARH|RESIZER) ){
+        tmp_win->frame_w = tmp_win->attr.width+SBAR_WH+1+2;
 		diff_x = 1;
 		diff_y = title_height+1;
 		if( !(tmp_win->flags&SBARV) )		tmp_win->frame_w-=(SBAR_WH+1);
@@ -552,9 +527,9 @@ MlvwmWindow *AddWindow( Window win )
 	else{
 		diff_x = (5+tmp_win->old_bw);
 		diff_y = (5+tmp_win->old_bw);
-		tmp_win->frame_w = tmp_win->attr.width+2+5*2;
-		tmp_win->frame_h = tmp_win->attr.height+2+5*2;
-	}
+        tmp_win->frame_w = tmp_win->attr.width+2+5*2;
+        tmp_win->frame_h = tmp_win->attr.height+2+5*2;
+    }
 
 	if( !(tmp_win->flags & TRANSIENT) && 
 	   !(tmp_win->hints.flags & USPosition) &&
@@ -605,13 +580,11 @@ MlvwmWindow *AddWindow( Window win )
 									1, CopyFromParent,
 									InputOutput,CopyFromParent,
 									valuemask,&attributes);  
-	if( tmp_win->flags&TITLE )		create_titlebar( tmp_win );
-	if( tmp_win->flags&RESIZER )		create_resizebox( tmp_win );
-	if( tmp_win->flags&SBARH || tmp_win->flags&SBARV )
-		create_scrollbar( tmp_win );
-	if( !(tmp_win->flags&( TITLE | SBARV | SBARH | RESIZER )) )
-		XMoveWindow( dpy, tmp_win->Parent, 5, 5 );
-	XSetWindowBorderWidth( dpy, tmp_win->w, 0 );
+    if( tmp_win->flags&TITLE )		create_titlebar( tmp_win );
+    if( tmp_win->flags&RESIZER )		create_resizebox( tmp_win );
+    if( tmp_win->flags&SBARH || tmp_win->flags&SBARV ) create_scrollbar( tmp_win );
+    if( !(tmp_win->flags&( TITLE | SBARV | SBARH | RESIZER )) ) XMoveWindow( dpy, tmp_win->Parent, 5, 5 );
+    XSetWindowBorderWidth( dpy, tmp_win->w, 0 );
 	
 	XSaveContext( dpy, tmp_win->frame, MlvwmContext, (caddr_t)tmp_win );
 	XSaveContext( dpy, tmp_win->Parent, MlvwmContext, (caddr_t)tmp_win );
