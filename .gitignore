@@ -9,3 +9,10 @@ mlvwm/*.o
 mlvwm/mlvwm
 sample_rc/Makefile
 sample_rc/Makefile.bak
+mlvwm.cflags
+mlvwm.config
+mlvwm.creator.user
+mlvwm.creator
+mlvwm.cxxflags
+mlvwm.files
+mlvwm.includes
