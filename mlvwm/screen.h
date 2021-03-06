@@ -53,74 +53,74 @@
 
 typedef struct ScreenInfo
 {
-	int d_depth;
-	int screen;
-	int n_desktop;
-	int currentdesk;
-	int MyDisplayWidth;
-	int MyDisplayHeight;
-	int NumberOfScreens;
-	MlvwmWindow MlvwmRoot;
-	MenuLabel *MenuLabelRoot;
-	MenuLabel IconMenu;
-	Menu *MenuRoot;
-	Menu *ActiveMenu;
-	MenuItem *iconAnchor;
-	Window Root;
-	Window MenuBar;
-	Window NoFocusWin;
-	Window lbCorner;
-	Window rbCorner;
-	MlvwmWindow *ActiveWin;
-	MlvwmWindow **LastActive;
-	MlvwmWindow *PreviousActive;
-	ShortCut *ShortCutRoot;
-	int root_pushes;
-	MlvwmWindow *pushed_window;
-	Cursor MlvwmCursors[MAX_CURSORS];
-	styles *style_list;
-	GC RobberGC;
-	GC BlackGC;
-	GC WhiteGC;
-	GC Gray1GC;
-	GC Gray2GC;
-	GC Gray3GC;
-	GC Gray4GC;
-	GC ScrollBlueGC;
-	GC MenuBlueGC;
-	GC MenuSelectBlueGC;
+    int d_depth;
+    int screen;
+    int n_desktop;
+    int currentdesk;
+    int MyDisplayWidth;
+    int MyDisplayHeight;
+    int NumberOfScreens;
+    MlvwmWindow MlvwmRoot;
+    MenuLabel *MenuLabelRoot;
+    MenuLabel IconMenu;
+    Menu *MenuRoot;
+    Menu *ActiveMenu;
+    MenuItem *iconAnchor;
+    Window Root;
+    Window MenuBar;
+    Window NoFocusWin;
+    Window lbCorner;
+    Window rbCorner;
+    MlvwmWindow *ActiveWin;
+    MlvwmWindow **LastActive;
+    MlvwmWindow *PreviousActive;
+    ShortCut *ShortCutRoot;
+    int root_pushes;
+    MlvwmWindow *pushed_window;
+    Cursor MlvwmCursors[MAX_CURSORS];
+    styles *style_list;
+    GC RobberGC;
+    GC BlackGC;
+    GC WhiteGC;
+    GC Gray1GC;
+    GC Gray2GC;
+    GC Gray3GC;
+    GC Gray4GC;
+    GC ScrollBlueGC;
+    GC MenuBlueGC;
+    GC MenuSelectBlueGC;
 #ifdef USE_LOCALE
-	XFontSet MenuBarFs;
-	XFontSet MenuFs;
-	XFontSet WindowFs;
-	XFontSet BalloonFs;
+    XFontSet MenuBarFs;
+    XFontSet MenuFs;
+    XFontSet WindowFs;
+    XFontSet BalloonFs;
 #else
-	XFontStruct *MenuBarFont;
-	XFontStruct *MenuFont;
-	XFontStruct *WindowFont;
-	XFontStruct *BalloonFont;
+    XFontStruct *MenuBarFont;
+    XFontStruct *MenuFont;
+    XFontStruct *WindowFont;
+    XFontStruct *BalloonFont;
 #endif
-	unsigned int flags;
-	int double_click_time;
-	int bar_width;
-	int flush_time;
-	int flush_times;
-	int resist_x, resist_y;
-	int zoom_wait;
+    unsigned int flags;
+    int double_click_time;
+    int bar_width;
+    int flush_time;
+    int flush_times;
+    int resist_x, resist_y;
+    int zoom_wait;
 
-	char *IconPath;
+    char *IconPath;
 
-	Icon *SystemIcon;
-	char ErrorFunc[30];
+    Icon *SystemIcon;
+    char ErrorFunc[30];
 
-	Window Balloon;
-	char   *BalloonOffStr;
-	char   *BalloonOnStr;
-	Pixmap mask;
+    Window Balloon;
+    char   *BalloonOffStr;
+    char   *BalloonOnStr;
+    Pixmap mask;
 
-	ShortCut *StartFunc;
+    ShortCut *StartFunc;
 
-	Bool Restarting;
+    Bool Restarting;
 } ScreenInfo;
 
 #define FOLLOWTOMOUSE       0x00000001
@@ -130,7 +130,7 @@ typedef struct ScreenInfo
 #define SHADEMAP            0x00000010
 #define ICONIFYHIDE         0x00000020
 #define ICONIFYSHADE        0x00000040
-#define COMPATIBLE          0x00000080 
+#define COMPATIBLE          0x00000080
 #define BALLOONON           0x00000100
 #define STARTING            0x00000200
 #define SYSTEM8             0x00000400
@@ -141,6 +141,7 @@ typedef struct ScreenInfo
 #define OPAQUERESIZE	 	0x00008000
 #define ONECLICKMENU	 	0x00010000
 #define DEBUGOUT            0x00020000
+#define ROUNDEDCORNERS      0x00040000
 
 #ifdef USE_LOCALE
 #define MENUBARFONT Scr.MenuBarFs
