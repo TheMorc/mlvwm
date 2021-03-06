@@ -117,8 +117,8 @@ void SetUpFrame( MlvwmWindow *t, int x, int y, int w, int h, Bool sendEvent )
 	int sbar_vh, sbar_hw;
 
 	title_height = t->flags & TITLE ? TITLE_HEIGHT : 0;
-	sbar_v = t->flags & SBARV ? SBAR_WH : 0;
-	sbar_h = t->flags & SBARH ? SBAR_WH : 0;
+    sbar_v = 0;
+    sbar_h = 0;
     resize_r = t->flags & RESIZER ? SBAR_WH : ( sbar_v!=0 && sbar_h!=0 ? SBAR_WH : 0 );
 
 	if( t->flags&TITLE )
@@ -158,19 +158,14 @@ void SetUpFrame( MlvwmWindow *t, int x, int y, int w, int h, Bool sendEvent )
 			XMoveWindow( dpy, t->resize_b, w-SBAR_WH-3-(Scr.flags&SYSTEM8?4:0),
 						h-SBAR_WH-3-(Scr.flags&SYSTEM8?4:0) );
  /* Vertical Scroll bar Height */
-		sbar_vh = t->attr.height-
-			(t->flags&RESIZER && !(t->flags&SBARH)?SBAR_WH+1:0);
+        //sbar_vh = t->attr.height-(t->flags&RESIZER && !(t->flags&SBARH)?SBAR_WH+1:0);
  /* Horizontal Scroll width */
-		sbar_hw = t->attr.width-
-			(t->flags&RESIZER && !(t->flags&SBARV)?SBAR_WH+1:0);
+        //sbar_hw = t->attr.width-(t->flags&RESIZER && !(t->flags&SBARV)?SBAR_WH+1:0);
 
-		if( t->flags&SBARV ){
+        if( t->flags&SBARV ){
 			int anker_position;
 
-			XMoveResizeWindow( dpy, t->scroll_v[0],
-							  t->attr.width+(Scr.flags&SYSTEM8?6:0),
-							  t->flags & TITLE ? TITLE_HEIGHT : -1,
-							  SBAR_WH, sbar_vh );
+			XMoveResizeWindow( dpy, t->scroll_v[0],t->attr.width+(Scr.flags&SYSTEM8?6:0),  t->flags & TITLE ? TITLE_HEIGHT : -1, SBAR_WH, sbar_vh );
 			XMoveWindow( dpy, t->scroll_v[2], 0, sbar_vh-SBAR_WH );
 			if( t->flags&SCROLL ){
 				if( t->frame_h<t->win_h )
@@ -206,10 +201,10 @@ void SetUpFrame( MlvwmWindow *t, int x, int y, int w, int h, Bool sendEvent )
 				}
 				XMoveWindow( dpy, t->scroll_h[3], anker_position, 0 );
 			}
-		}
-	}
+        }
+    }
 	if( t->flags & SCROLL ){
-		if( t->flags & SBARH ){
+        if( t->flags & SBARH ){
 			t->attr.width = w>t->win_w ? t->attr.width :
 				t->win_w-sbar_v-(t->flags&SBARV ? 2 : 1 )-1
 					-(Scr.flags&SYSTEM8?12:0);
@@ -221,7 +216,7 @@ void SetUpFrame( MlvwmWindow *t, int x, int y, int w, int h, Bool sendEvent )
 					(t->flags&TITLE ? 1 : 0)-(t->flags&SBARH ? 1 : 0)
 					-(Scr.flags&SYSTEM8?6:0);
 			t->win_y = h>t->win_h ? 0 : t->win_y;
-		}
+        }
 	}
 	else{
 		t->win_x = 0;
@@ -549,6 +544,8 @@ void DrawArrow( Window w, int direction, GC color )
 
 void DrawSbarAnk( MlvwmWindow *t, int context, Bool on_off )
 {
+    return;
+
 	Window	win;
 	int size, scale, lp;
 	unsigned int mask, valuemask;
@@ -623,6 +620,8 @@ void DrawSbarAnk( MlvwmWindow *t, int context, Bool on_off )
 
 void DrawSbarArrow( MlvwmWindow *t, int context, Bool on_off )
 {
+    return;
+
 	int size;
 	unsigned int mask, valuemask;
 	Window win;
@@ -687,6 +686,8 @@ void DrawSbarArrow( MlvwmWindow *t, int context, Bool on_off )
 
 void DrawSbarBar( MlvwmWindow *t, int context, Bool on_off )
 {
+    return;
+
 	unsigned long mask, valuemask;
 	XSetWindowAttributes attributes;
 	XWindowAttributes winattrs;
@@ -906,7 +907,7 @@ void DrawResizeBox( MlvwmWindow *t, Bool on_off )
 
 void DrawAllDecorations( MlvwmWindow *t, Bool on_off )
 {
-	if( t->flags&SBARV ){
+    /*if( t->flags&SBARV ){
 		DrawSbarBar( t, C_SBAR_V, on_off );
 		DrawSbarAnk( t, C_SBAR_V_AN, on_off );
 		DrawSbarArrow( t, C_SBAR_UP, on_off );
@@ -917,7 +918,7 @@ void DrawAllDecorations( MlvwmWindow *t, Bool on_off )
 		DrawSbarAnk( t, C_SBAR_H_AN, on_off );
 		DrawSbarArrow( t, C_SBAR_LEFT, on_off );
 		DrawSbarArrow( t, C_SBAR_RIGHT, on_off );
-	}
+    }*/
 	if( t->flags&RESIZER )
 		DrawResizeBox( t, on_off );
 	if( t->flags&TITLE )

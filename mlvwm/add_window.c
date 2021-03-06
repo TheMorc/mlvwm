@@ -107,6 +107,7 @@ void create_resizebox( MlvwmWindow *tmp_win )
 
 void create_scrollbar( MlvwmWindow *tmp_win )
 {
+    return;
 	unsigned long valuemask;
 	XSetWindowAttributes attributes;
 	int title_height;

@@ -1,0 +1,176 @@
+xterm: fatal IO error 11 (Resource temporarily unavailable) or KillClient on X server ":2"
+** Message: 01:24:07.333: x-terminal-emulator has very limited support, consider choose another terminal
+
+(pcmanfm:25057): Gdk-WARNING **: 01:24:07.369: gdk_window_set_icon_list: icons too large
+
+** (epiphany:26739): WARNING **: 01:32:43.910: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.053: atk-bridge: get_device_events_reply: unknown signature
+
+** (epiphany:26739): WARNING **: 01:32:44.053: atk-bridge: get_device_events_reply: unknown signature
+
+** (epiphany:26739): WARNING **: 01:32:44.054: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (epiphany:26739): WARNING **: 01:32:44.074: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.103: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.103: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.207: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.216: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.223: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.223: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.253: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.295: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.304: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.304: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.304: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.304: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.304: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.304: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.304: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.314: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.319: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.319: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.349: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.357: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.357: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.357: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.357: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.357: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.357: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.358: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: get_device_events_reply: unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.366: atk-bridge: GetRegisteredEvents returned message with unknown signature
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.376: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.376: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.383: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.383: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.389: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.389: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.389: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.395: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:44.395: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.395: AT-SPI: Could not obtain desktop path or name
+
+
+** (WebKitWebProcess:3): WARNING **: 01:32:44.395: AT-SPI: Could not obtain desktop path or name
+
+
+** (epiphany:26739): WARNING **: 01:32:48.671: Web process crashed
+
+(WebKitWebProcess:3): dbind-WARNING **: 01:32:48.795: Couldn't connect to accessibility bus: Failed to connect to socket /run/user/1000/webkitgtk/dbus-proxy-OUISZ0: Connection refused

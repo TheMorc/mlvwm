@@ -117,7 +117,7 @@ char *SetSkipSelectStyle( styles *tmp_style, char *str )
 char *SetScrollStyle( styles *tmp_style, char *str )
 {
 	if( tmp_style->flags & ( SBARV | SBARH ) )
-		tmp_style->flags |= SCROLL;
+        tmp_style->flags &= ~SCROLL;
 
 	return str+12;
 }

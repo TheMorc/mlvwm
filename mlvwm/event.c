@@ -222,7 +222,7 @@ int GetContext( MlvwmWindow *t, XEvent *e, Window *w )
 		if(t->flags&MINMAXR && *w == t->minmax_b)	Context = C_MINMAX;
 		if(t->flags&RESIZER && *w == t->resize_b)	Context = C_RESIZE;
 		if(t->flags&SHADER && *w == t->shade_b )    Context = C_SHADE;
-		if( t->flags&SBARV ){
+        /*if( t->flags&SBARV ){
 			if(*w == t->scroll_v[0] )		Context = C_SBAR_V;
 			if(*w == t->scroll_v[1] )		Context = C_SBAR_UP;
 			if(*w == t->scroll_v[2] )		Context = C_SBAR_DOWN;
@@ -233,7 +233,7 @@ int GetContext( MlvwmWindow *t, XEvent *e, Window *w )
 			if(*w == t->scroll_h[1] )		Context = C_SBAR_LEFT;
 			if(*w == t->scroll_h[2] )		Context = C_SBAR_RIGHT;
 			if(*w == t->scroll_h[3] )		Context = C_SBAR_H_AN;
-		}
+        }*/
 	}
 	return Context;
 }
@@ -524,10 +524,8 @@ void MoveWindow( MlvwmWindow *mw, XEvent *evp )
 			XQueryPointer( dpy, ev.xany.window,&JunkRoot, &JunkChild,
 						  &x, &y,&JunkX, &JunkY,&JunkMask);
 			if( drag_x==pre_x-x && drag_y==pre_y-y ) continue;
-			if( !(Scr.flags&OPAQUEMOVE) )
-				XDrawRectangle( dpy, Scr.Root, Scr.RobberGC, 
-						   mw->frame_x-drag_x, mw->frame_y-drag_y,
-						   mw->frame_w, mw->frame_h );
+            if( !(Scr.flags&OPAQUEMOVE) )
+                XDrawRectangle( dpy, Scr.Root, Scr.RobberGC,  mw->frame_x-drag_x, mw->frame_y-drag_y, mw->frame_w, mw->frame_h );
 
 			/* Calc. edge resistance */
 			/* edge inside the menu bar */
@@ -559,10 +557,8 @@ void MoveWindow( MlvwmWindow *mw, XEvent *evp )
 				if( Scr.flags&OPAQUEMOVE )
 					XMoveWindow( dpy, mw->frame,
 							   mw->frame_x-drag_x, mw->frame_y-drag_y );
-				else
-					XDrawRectangle( dpy, Scr.Root, Scr.RobberGC, 
-							   mw->frame_x-drag_x, mw->frame_y-drag_y,
-							   mw->frame_w, mw->frame_h );
+                else
+                    XDrawRectangle( dpy, Scr.Root, Scr.RobberGC, mw->frame_x-drag_x, mw->frame_y-drag_y, mw->frame_w, mw->frame_h );
 				XSync( dpy, 0 );
 			}
 			break;
